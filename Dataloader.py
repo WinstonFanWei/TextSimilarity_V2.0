@@ -6,17 +6,13 @@ import os
 from gensim import corpora, models
 import nltk
 from nltk.corpus import stopwords
-from nltk.tokenize import word_tokenize
+from nltk.tokenize import word_tokenize, sent_tokenize
 from nltk.stem import PorterStemmer
 
 import spacy
 
 from tqdm import tqdm
 import time
-
-import nltk
-
-from nltk.tokenize import sent_tokenize
 
 class Dataloader:
     def __init__(self, data_path):
