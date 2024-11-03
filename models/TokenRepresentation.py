@@ -15,4 +15,6 @@ class representor:
             lda_model.train_LDA_model(self.data, self.paras, self.count)
             return lda_model.token_represent()
         elif self.paras["model_config"][self.count]["token_representation_method"] == 'sentence_bert':
-            pass
+            return None
+        else:
+            return None

@@ -46,8 +46,8 @@ class LDA_model:
         print("[LDA模型训练结束, 用时: " + str(round(end_time - start_time, 2)) + "s]")
 
         # 打印每个主题及其主题词
-        print("\n[主题词展示]")
-        self.lda_model.print_topics(num_topics=20, num_words=10)
+        # print("\n[主题词展示]")
+        # self.lda_model.print_topics(num_topics=20, num_words=10)
 
     def token_represent(self):
         # 用self.lda_model
