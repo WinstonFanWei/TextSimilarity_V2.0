@@ -16,6 +16,11 @@ import time
 
 class Dataloader:
     def __init__(self, data_path):
+        # 确保已经下载了所需的 NLTK 数据包
+        # nltk.download('punkt')
+        # nltk.download('stopwords')
+        # nltk.download('punkt_tab')
+
         self.data_path = data_path
         self.stop_words = set(stopwords.words('english'))
         self.sentence_split_method = spacy.load('en_core_web_sm')
