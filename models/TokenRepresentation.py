@@ -10,8 +10,9 @@ class representor:
         self.count = count
 
     def get_token_representation(self):
-        if self.paras["model_config"][self.count] == 'LDA':
+        if self.paras["model_config"][self.count]["token_representation_method"] == 'LDA':
             lda_model = lda_m.LDA_model()
-            return lda_model.LDA_model(self.data, self.paras, self.count)
-        elif self.paras["model_config"][self.count] == 'sentence_bert':
+            lda_model.train_LDA_model(self.data, self.paras, self.count)
+            return lda_model.token_represent()
+        elif self.paras["model_config"][self.count]["token_representation_method"] == 'sentence_bert':
             pass

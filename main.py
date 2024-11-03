@@ -11,6 +11,7 @@ def main(data, paras):
     for count in range(len(paras["model_config"])):
         representor = TR.representor(all_data, paras, count)
         lda_model = representor.get_token_representation()
+        print(lda_model)
 
 
 if __name__ == '__main__':
@@ -43,8 +44,8 @@ if __name__ == '__main__':
             },
             {
                 "token_representation_method": "LDA",
-                "num_topics": 1,
-                "passes": 1,
+                "num_topics": 30,
+                "passes": 5,
                 "token_class": "paragraph",
                 "distance_method": "cosine"
             }
