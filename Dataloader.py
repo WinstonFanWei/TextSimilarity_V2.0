@@ -110,10 +110,8 @@ class Dataloader:
                     stemmed_tokens = [stemmer.stem(filtered_token) for filtered_token in filtered_tokens]
                     
                     # 分句子
-                    # doc = self.sentence_split_method(text)
-                    # sentences = [sent.text for sent in doc.sents]
-                    
-                    sentences = sent_tokenize(text)
+                    doc = self.sentence_split_method(text)
+                    sentences = [sent.text for sent in doc.sents]
                     
                     # 对每个句子进行预处理
                     processed_sentences = [self.sentence_preprocess(sentence) for sentence in sentences]
