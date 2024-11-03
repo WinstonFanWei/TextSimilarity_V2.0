@@ -49,7 +49,7 @@ class LDA_model:
         print("\n[主题词展示]")
         self.lda_model.print_topics(num_topics=20, num_words=10)
 
-    def token_represent():
+    def token_represent(self):
         # 用self.lda_model
         return 0
      

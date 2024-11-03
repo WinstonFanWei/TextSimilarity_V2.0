@@ -9,6 +9,7 @@ def main(data, paras):
     
     # 循环处理所有模型搭配
     for count in range(len(paras["model_config"])):
+        print(count)
         representor = TR.representor(all_data, paras, count)
         lda_model = representor.get_token_representation()
         print(lda_model)
@@ -61,3 +62,5 @@ if __name__ == '__main__':
     data = dataloader.load()
 
     main(data, paras)
+
+    print("结束")
