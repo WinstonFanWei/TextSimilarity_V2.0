@@ -9,14 +9,13 @@ def main(data, paras):
     
     # 循环处理所有模型搭配
     for count in range(len(paras["model_config"])):
-        print(count)
         representor = TR.representor(all_data, paras, count)
         lda_model = representor.get_token_representation()
         print(lda_model)
 
 
 if __name__ == '__main__':
-    print("-----------------------------------------------------------------------------------------------------------------")
+    print("----------------------------------------------------------------------------------------")
     """ Main function. """
     
     # Parameters
@@ -24,7 +23,7 @@ if __name__ == '__main__':
         # 参数
         "file_path": "/Users/winston/Desktop/Repository/TextSimilarity_V2.0/data",
 
-        # 开关
+        # 开关  
         "Debug_mode": True,
 
         # 模型
@@ -63,4 +62,4 @@ if __name__ == '__main__':
 
     main(data, paras)
 
-    print("结束")
+    print("----------------------------------------------------------------------------------------")
