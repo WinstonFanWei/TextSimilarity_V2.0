@@ -46,7 +46,7 @@ if __name__ == '__main__':
             #     "token_class": "word",
             #     "token_distance_method": "cosine",
             #     "series_distance_method": "DTW",
-            #     "distance2similarity_method": "2*(1-x)"
+            #     "distance2similarity_method": "(1-2*x)"
             # },
             {
                 "token_representation_method": "LDA",
@@ -55,7 +55,7 @@ if __name__ == '__main__':
                 "token_class": "sentence",
                 "token_distance_method": "cosine",
                 "series_distance_method": "DTW",
-                "distance2similarity_method": "2*(1-x)"
+                "distance2similarity_method": "(1-2*x)"
             },
             {
                 "token_representation_method": "LDA",
@@ -64,7 +64,7 @@ if __name__ == '__main__':
                 "token_class": "paragraph",
                 "token_distance_method": "cosine",
                 "series_distance_method": "DTW",
-                "distance2similarity_method": "2*(1-x)"
+                "distance2similarity_method": "(1-2*x)"
             }
         ]
     }

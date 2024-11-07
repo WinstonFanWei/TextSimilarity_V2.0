@@ -49,8 +49,8 @@ class CompareFiles:
         return DTW_standard
     
     def distance2similarity(self, x):
-        if self.paras["model_config"][self.count]["distance2similarity_method"] == "2*(1-x)":
-            return 2 * (1 - x)
+        if self.paras["model_config"][self.count]["distance2similarity_method"] == "(1-2*x)":
+            return (1 - 2 * x)
         else:
             pass
         
