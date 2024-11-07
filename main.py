@@ -1,6 +1,10 @@
 import os
 import Dataloader as Dl
 import models.TokenRepresentation as TR
+from TokenDistance import TokenDistance
+from CompareFiles import CompareFiles
+import Utils
+import pandas as pd
 
 def main(data, paras):
     # 合并训练集和测试集数据
@@ -10,9 +14,14 @@ def main(data, paras):
     for count in range(len(paras["model_config"])):
         representor = TR.representor(all_data, paras, count)
         files_representations = representor.get_token_representation()
-        print(f"--------{count}次开始输出---------")
-        print(files_representations["test.txt"])
-        print(f"--------{count}次结束输出---------")
+        td = TokenDistance(paras, count)
+        compareFiles = CompareFiles(files_representations, paras, td, count)
+        compareFiles.get_all_comparisons()
+
+    # 指标评估
+    output_path = os.path.join(paras["results_path"], "df_compare.csv")
+    df_compare = pd.read_csv(output_path)
+    Utils.compute_metrics(df_compare, paras, len(paras["model_config"]))
 
 
 if __name__ == '__main__':
@@ -23,32 +32,39 @@ if __name__ == '__main__':
     paras = {
         # 参数
         "file_path": "/Users/winston/Desktop/Repository/TextSimilarity_V2.0/data",
+        "results_path": "/Users/winston/Desktop/Repository/TextSimilarity_V2.0/results",
 
-        # 开关  
+        # 开关
         "Debug_mode": True,
 
         # 模型
         "model_config": [
-            {
-                "token_representation_method": "LDA",
-                "num_topics": 5,
-                "passes": 10,
-                "token_class": "word",
-                "distance_method": "cosine"
-            },
+            # {
+            #     "token_representation_method": "LDA",
+            #     "num_topics": 5,
+            #     "passes": 10,
+            #     "token_class": "word",
+            #     "token_distance_method": "cosine",
+            #     "series_distance_method": "DTW",
+            #     "distance2similarity_method": "2*(1-x)"
+            # },
             {
                 "token_representation_method": "LDA",
                 "num_topics": 5,
                 "passes": 10,
                 "token_class": "sentence",
-                "distance_method": "cosine"
+                "token_distance_method": "cosine",
+                "series_distance_method": "DTW",
+                "distance2similarity_method": "2*(1-x)"
             },
             {
                 "token_representation_method": "LDA",
                 "num_topics": 5,
                 "passes": 10,
                 "token_class": "paragraph",
-                "distance_method": "cosine"
+                "token_distance_method": "cosine",
+                "series_distance_method": "DTW",
+                "distance2similarity_method": "2*(1-x)"
             }
         ]
     }
