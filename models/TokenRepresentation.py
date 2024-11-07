@@ -13,7 +13,7 @@ class representor:
         if self.paras["model_config"][self.count]["token_representation_method"] == 'LDA':
             lda_model = lda_m.LDA_model()
             lda_model.train_LDA_model(self.data, self.paras, self.count)
-            return lda_model.token_represent()
+            return lda_model.token_represent(self.data, self.paras, self.count)
         elif self.paras["model_config"][self.count]["token_representation_method"] == 'sentence_bert':
             return None
         else:
