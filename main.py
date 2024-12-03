@@ -10,6 +10,13 @@ def main(data, paras):
     # 合并训练集和测试集数据
     all_data = data["train"] | data["test"]
     
+    # 数据格式
+    # print(all_data["test.txt"])
+    
+    # sentences = [" ".join(words) for words in all_data["test.txt"]["file_sentences"]]
+    # print(sentences)
+        
+    
     # 循环处理所有模型搭配
     for count in range(len(paras["model_config"])):
         representor = TR.representor(all_data, paras, count)
@@ -31,8 +38,8 @@ if __name__ == '__main__':
     # Parameters
     paras = {
         # 参数
-        "file_path": "/Users/winston/Desktop/Repository/TextSimilarity_V2.0/data",
-        "results_path": "/Users/winston/Desktop/Repository/TextSimilarity_V2.0/results",
+        "file_path": "C:/Users/Winston/Desktop/Repository/TextSimilarity_V2.0/data", #"/Users/winston/Desktop/Repository/TextSimilarity_V2.0/data",
+        "results_path": "C:/Users/Winston/Desktop/Repository/TextSimilarity_V2.0/results", #"/Users/winston/Desktop/Repository/TextSimilarity_V2.0/results",
 
         # 开关
         "Debug_mode": True,
@@ -41,8 +48,8 @@ if __name__ == '__main__':
         "model_config": [
             # {
             #     "token_representation_method": "LDA",
-            #     "num_topics": 5,
-            #     "passes": 10,
+            #     "num_topics": 40,
+            #     "passes": 50,
             #     "token_class": "word",
             #     "token_distance_method": "cosine",
             #     "series_distance_method": "DTW",
@@ -50,22 +57,40 @@ if __name__ == '__main__':
             # },
             {
                 "token_representation_method": "LDA",
-                "num_topics": 5,
-                "passes": 10,
+                "num_topics": 40,
+                "passes": 50,
                 "token_class": "sentence",
                 "token_distance_method": "cosine",
                 "series_distance_method": "DTW",
                 "distance2similarity_method": "(1-2*x)"
             },
-            {
-                "token_representation_method": "LDA",
-                "num_topics": 5,
-                "passes": 10,
-                "token_class": "paragraph",
-                "token_distance_method": "cosine",
-                "series_distance_method": "DTW",
-                "distance2similarity_method": "(1-2*x)"
-            }
+            # {
+            #     "token_representation_method": "LDA",
+            #     "num_topics": 40,
+            #     "passes": 50,
+            #     "token_class": "paragraph",
+            #     "token_distance_method": "cosine",
+            #     "series_distance_method": "DTW",
+            #     "distance2similarity_method": "(1-2*x)"
+            # },
+            # {
+            #     "token_representation_method": "LDA",
+            #     "num_topics": 5,
+            #     "passes": 10,
+            #     "token_class": "paragraph",
+            #     "token_distance_method": "WMD",
+            #     "series_distance_method": "DTW",
+            #     "distance2similarity_method": "(1-2*x)"
+            # },
+            # {
+            #     "token_representation_method": "sentence_bert",
+            #     "num_topics": 5,
+            #     "passes": 10,
+            #     "token_class": "sentence",
+            #     "token_distance_method": "cosine",
+            #     "series_distance_method": "DTW",
+            #     "distance2similarity_method": "(1-2*x)"
+            # },
         ]
     }
 

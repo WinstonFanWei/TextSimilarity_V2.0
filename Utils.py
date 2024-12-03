@@ -14,7 +14,7 @@ def compute_metrics(df_compare, paras, len):
     message = "\n---------------------- RMSE ---------------------- \n[0, +inf] RMSE smaller is better." 
     
     for i in range(len):
-        message += f"\n[方案{i}] RMSE: " + str(compute_rmse(df_compare.iloc[:, i-len], df_compare["GroundTruth"]))
+        message += f"\n[method{i}] RMSE: " + str(compute_rmse(df_compare[f"method_{i}"], df_compare["GroundTruth"]))
 
     message += "\n--------------------------------------------------\n"
 
@@ -23,7 +23,7 @@ def compute_metrics(df_compare, paras, len):
     message = "\n---------------------- Correlation ---------------------- \n[-1, 1] Correlation bigger is better."
 
     for i in range(len):
-        message += f"\n[方案{i}] CORR: " + str(compute_correlation(df_compare.iloc[:, i-len], df_compare["GroundTruth"]))
+        message += f"\n[method{i}] CORR: " + str(compute_correlation(df_compare[f"method_{i}"], df_compare["GroundTruth"]))
 
     message += "\n--------------------------------------------------\n"
     
@@ -32,7 +32,7 @@ def compute_metrics(df_compare, paras, len):
     message =  "\n---------------------- F1-score ---------------------- \n[0, 1] F1-score bigger is better. "
 
     for i in range(len):
-        message += f"\n[方案{i}] F1-score: " + str(compute_f1(df_compare.iloc[:, i-len], df_compare["GroundTruth"]))
+        message += f"\n[method{i}] F1-score: " + str(compute_f1(df_compare[f"method_{i}"], df_compare["GroundTruth"]))
 
     message += "\n--------------------------------------------------\n"
     

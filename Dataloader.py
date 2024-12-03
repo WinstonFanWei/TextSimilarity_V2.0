@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
 
+import pickle
 import os
 
 from gensim import corpora, models
@@ -17,9 +18,9 @@ import time
 class Dataloader:
     def __init__(self, data_path):
         # 确保已经下载了所需的 NLTK 数据包
-        # nltk.download('punkt')
-        # nltk.download('stopwords')
-        # nltk.download('punkt_tab')
+        nltk.download('punkt')
+        nltk.download('stopwords')
+        nltk.download('punkt_tab')
 
         self.data_path = data_path
         self.stop_words = set(stopwords.words('english'))
@@ -99,7 +100,7 @@ class Dataloader:
                 with open(file_path, 'r', encoding='utf-8') as file:
                     # 读取文件内容到字符串
                     text = file.read().lower()
-                    
+                        
                     # 确保已经下载了所需的 NLTK 数据包
                     # nltk.download('punkt')
                     # nltk.download('stopwords')

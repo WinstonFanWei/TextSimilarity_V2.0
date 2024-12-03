@@ -1,4 +1,5 @@
 mytest/
 data/
 log/
+cache/
 *.txt
