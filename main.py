@@ -5,6 +5,8 @@ from TokenDistance import TokenDistance
 from CompareFiles import CompareFiles
 import Utils
 import pandas as pd
+import time 
+import logging
 
 def main(data, paras):
     # 合并训练集和测试集数据
@@ -15,7 +17,7 @@ def main(data, paras):
     
     # sentences = [" ".join(words) for words in all_data["test.txt"]["file_sentences"]]
     # print(sentences)
-        
+    
     
     # 循环处理所有模型搭配
     for count in range(len(paras["model_config"])):
@@ -33,6 +35,7 @@ def main(data, paras):
 
 if __name__ == '__main__':
     print("----------------------------------------------------------------------------------------")
+    start_time = time.time()
     """ Main function. """
     
     # Parameters
@@ -46,51 +49,48 @@ if __name__ == '__main__':
 
         # 模型
         "model_config": [
-            # {
-            #     "token_representation_method": "LDA",
-            #     "num_topics": 40,
-            #     "passes": 50,
-            #     "token_class": "word",
-            #     "token_distance_method": "cosine",
-            #     "series_distance_method": "DTW",
-            #     "distance2similarity_method": "(1-2*x)"
-            # },
             {
                 "token_representation_method": "LDA",
-                "num_topics": 40,
-                "passes": 50,
+                "num_topics": 50,
+                "passes": 100,
+                "token_class": "document",
+                "series_distance_method": "cosine",
+                "distance2similarity_method": "pass"
+            },
+            {
+                "token_representation_method": "LDA",
+                "num_topics": 50,
+                "passes": 100,
+                "token_class": "word",
+                "token_distance_method": "cosine",
+                "series_distance_method": "DTW",
+                "distance2similarity_method": "MinMaxScaler"
+            },
+            {
+                "token_representation_method": "LDA",
+                "num_topics": 50,
+                "passes": 100,
                 "token_class": "sentence",
                 "token_distance_method": "cosine",
                 "series_distance_method": "DTW",
-                "distance2similarity_method": "(1-2*x)"
+                "distance2similarity_method": "MinMaxScaler",
             },
-            # {
-            #     "token_representation_method": "LDA",
-            #     "num_topics": 40,
-            #     "passes": 50,
-            #     "token_class": "paragraph",
-            #     "token_distance_method": "cosine",
-            #     "series_distance_method": "DTW",
-            #     "distance2similarity_method": "(1-2*x)"
-            # },
-            # {
-            #     "token_representation_method": "LDA",
-            #     "num_topics": 5,
-            #     "passes": 10,
-            #     "token_class": "paragraph",
-            #     "token_distance_method": "WMD",
-            #     "series_distance_method": "DTW",
-            #     "distance2similarity_method": "(1-2*x)"
-            # },
-            # {
-            #     "token_representation_method": "sentence_bert",
-            #     "num_topics": 5,
-            #     "passes": 10,
-            #     "token_class": "sentence",
-            #     "token_distance_method": "cosine",
-            #     "series_distance_method": "DTW",
-            #     "distance2similarity_method": "(1-2*x)"
-            # },
+            {
+                "token_representation_method": "LDA",
+                "num_topics": 50,
+                "passes": 100,
+                "token_class": "paragraph",
+                "token_distance_method": "cosine",
+                "series_distance_method": "DTW",
+                "distance2similarity_method": "MinMaxScaler",
+            },
+            {
+                "token_representation_method": "sentence_bert",
+                "token_class": "sentence",
+                "token_distance_method": "cosine",
+                "series_distance_method": "DTW",
+                "distance2similarity_method": "MinMaxScaler",
+            }
         ]
     }
 
@@ -103,5 +103,20 @@ if __name__ == '__main__':
     data = dataloader.load()
 
     main(data, paras)
+    
+    end_time = time.time()
 
-    print("----------------------------------------------------------------------------------------")
+    execution_time = end_time - start_time
+    print(f"程序运行时间：{execution_time:.2f} 秒")
+    
+    logging.basicConfig(level=logging.DEBUG,
+                    format='%(asctime)s - %(name)s - %(levelname)s %(message)s',
+                    handlers=[
+                        logging.FileHandler('log/debug.log'),
+                        logging.StreamHandler()
+                    ])
+    logger = logging.getLogger(__name__)
+
+    message = f"\nRUN TIME: {round(execution_time / 60, 2)} minutes\n----------------------------------------------------------------------------------------" 
+    
+    logger.debug(message)

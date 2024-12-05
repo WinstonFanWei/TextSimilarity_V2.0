@@ -3,3 +3,4 @@ data/
 log/
 cache/
 *.txt
+*.ipynb
