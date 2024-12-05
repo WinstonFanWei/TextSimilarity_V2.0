@@ -48,7 +48,7 @@ if __name__ == '__main__':
         "Debug_mode": True,
         
         # CPU核心工作数 最大20
-        "num_cores": 18,
+        "num_cores": 10,
 
         # 模型
         "model_config": [
