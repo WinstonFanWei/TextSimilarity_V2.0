@@ -46,6 +46,9 @@ if __name__ == '__main__':
 
         # 开关
         "Debug_mode": True,
+        
+        # CPU核心工作数 最大20
+        "num_cores": 18,
 
         # 模型
         "model_config": [
@@ -59,8 +62,8 @@ if __name__ == '__main__':
             },
             {
                 "token_representation_method": "LDA",
-                "num_topics": 50,
-                "passes": 100,
+                "num_topics": 20,
+                "passes": 40,
                 "token_class": "word",
                 "token_distance_method": "cosine",
                 "series_distance_method": "DTW",

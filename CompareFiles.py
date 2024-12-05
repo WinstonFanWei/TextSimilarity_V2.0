@@ -40,7 +40,7 @@ class CompareFiles:
             df_compare = pd.concat([df_train, df_test], ignore_index=True)  
             
         """使用多核并行处理 DataFrame"""
-        with ProcessPoolExecutor(max_workers=14) as executor:
+        with ProcessPoolExecutor(max_workers=self.paras["num_cores"]) as executor:
             # 提交任务到进程池并带进度条
             results = list(
                 tqdm(
