@@ -8,6 +8,8 @@ import pandas as pd
 import time 
 import logging
 
+from datetime import datetime
+
 def main(data, paras):
     # 合并训练集和测试集数据
     all_data = data["train"] | data["test"]
@@ -36,6 +38,10 @@ def main(data, paras):
 if __name__ == '__main__':
     print("----------------------------------------------------------------------------------------")
     start_time = time.time()
+
+    # 打印开始时间
+    print(f"程序开始时间: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    
     """ Main function. """
     
     # Parameters
@@ -60,15 +66,15 @@ if __name__ == '__main__':
                 "series_distance_method": "cosine",
                 "distance2similarity_method": "pass"
             },
-            {
-                "token_representation_method": "LDA",
-                "num_topics": 20,
-                "passes": 40,
-                "token_class": "word",
-                "token_distance_method": "cosine",
-                "series_distance_method": "DTW",
-                "distance2similarity_method": "MinMaxScaler"
-            },
+            # {
+            #     "token_representation_method": "LDA",
+            #     "num_topics": 20,
+            #     "passes": 40,
+            #     "token_class": "word",
+            #     "token_distance_method": "cosine",
+            #     "series_distance_method": "DTW",
+            #     "distance2similarity_method": "MinMaxScaler"
+            # },
             {
                 "token_representation_method": "LDA",
                 "num_topics": 50,
