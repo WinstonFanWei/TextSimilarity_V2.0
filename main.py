@@ -10,6 +10,13 @@ import logging
 
 from datetime import datetime
 
+import locale
+import os
+
+locale.setlocale(locale.LC_ALL, '')
+os.environ['LC_ALL'] = 'en_US.UTF-8'
+os.environ['LANG'] = 'en_US.UTF-8'
+
 def main(data, paras):
     # 合并训练集和测试集数据
     all_data = data["train"] | data["test"]
@@ -47,14 +54,16 @@ if __name__ == '__main__':
     # Parameters
     paras = {
         # 参数
-        "file_path": "C:/Users/Winston/Desktop/Repository/TextSimilarity_V2.0/data", #"/Users/winston/Desktop/Repository/TextSimilarity_V2.0/data",
-        "results_path": "C:/Users/Winston/Desktop/Repository/TextSimilarity_V2.0/results", #"/Users/winston/Desktop/Repository/TextSimilarity_V2.0/results",
+        # "file_path": "C:/Users/Winston/Desktop/Repository/TextSimilarity_V2.0/data", 
+        # "results_path": "C:/Users/Winston/Desktop/Repository/TextSimilarity_V2.0/results", 
+        "file_path": "/Users/winston/Desktop/Repository/TextSimilarity_V2.0/data",
+        "results_path": "/Users/winston/Desktop/Repository/TextSimilarity_V2.0/results",
 
         # 开关
         "Debug_mode": True,
         
-        # CPU核心工作数 最大20
-        "num_cores": 10,
+        # CPU核心工作数 windows最大20 mac最大10
+        "num_cores": 5,
 
         # 模型
         "model_config": [
