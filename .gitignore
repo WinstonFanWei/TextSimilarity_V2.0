@@ -2,5 +2,6 @@ mytest/
 data/
 log/
 cache/
+latex/
 *.txt
 *.ipynb

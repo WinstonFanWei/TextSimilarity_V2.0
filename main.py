@@ -5,7 +5,7 @@ from TokenDistance import TokenDistance
 from CompareFiles import CompareFiles
 import Utils
 import pandas as pd
-import time 
+import time
 import logging
 
 from datetime import datetime
