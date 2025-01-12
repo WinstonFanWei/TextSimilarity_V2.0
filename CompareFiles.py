@@ -8,6 +8,7 @@ from sklearn.preprocessing import MinMaxScaler
 from concurrent.futures import ProcessPoolExecutor
 
 from sklearn.metrics.pairwise import cosine_similarity
+from sklearn.feature_extraction.text import TfidfVectorizer
 
 class CompareFiles:
     def __init__(self, files_representations, paras, td, count):
@@ -78,6 +79,15 @@ class CompareFiles:
             pass
         elif(self.paras["model_config"][self.count]["token_class"] == 'document' and self.paras["model_config"][self.count]["series_distance_method"] == 'cosine'):
             return cosine_similarity([file1_represent], [file2_represent])[0][0]
+        elif(self.paras["model_config"][self.count]["token_representation_method"] == "TFIDF"):
+            # 计算TF-IDF
+            vectorizer = TfidfVectorizer()
+            tfidf_matrix = vectorizer.fit_transform([file1_represent, file2_represent])
+            
+            # 计算余弦相似度
+            cosine_sim = cosine_similarity(tfidf_matrix[0:1], tfidf_matrix[1:2])
+            return round(cosine_sim[0][0], 2)
+
     
     def compare_two_files_use_DTW(self, file1_represent, file2_represent):
         path, dtw_distance = dtw_path_from_metric(file1_represent, file2_represent, metric=self.td.get_token_distance)

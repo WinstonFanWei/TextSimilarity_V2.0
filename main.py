@@ -27,7 +27,6 @@ def main(data, paras):
     # sentences = [" ".join(words) for words in all_data["test.txt"]["file_sentences"]]
     # print(sentences)
     
-    
     # 循环处理所有模型搭配
     for count in range(len(paras["model_config"])):
         representor = TR.representor(all_data, paras, count)
@@ -68,6 +67,12 @@ if __name__ == '__main__':
         # 模型
         "model_config": [
             {
+                "token_representation_method": "TFIDF",
+                "token_class": "TFIDF_document",
+                "series_distance_method": "cosine",
+                "distance2similarity_method": "pass",
+            },
+            {
                 "token_representation_method": "LDA",
                 "num_topics": 50,
                 "passes": 100,
@@ -84,31 +89,31 @@ if __name__ == '__main__':
             #     "series_distance_method": "DTW",
             #     "distance2similarity_method": "MinMaxScaler"
             # },
-            {
-                "token_representation_method": "LDA",
-                "num_topics": 50,
-                "passes": 100,
-                "token_class": "sentence",
-                "token_distance_method": "cosine",
-                "series_distance_method": "DTW",
-                "distance2similarity_method": "MinMaxScaler",
-            },
-            {
-                "token_representation_method": "LDA",
-                "num_topics": 50,
-                "passes": 100,
-                "token_class": "paragraph",
-                "token_distance_method": "cosine",
-                "series_distance_method": "DTW",
-                "distance2similarity_method": "MinMaxScaler",
-            },
-            {
-                "token_representation_method": "sentence_bert",
-                "token_class": "sentence",
-                "token_distance_method": "cosine",
-                "series_distance_method": "DTW",
-                "distance2similarity_method": "MinMaxScaler",
-            }
+            # {
+            #     "token_representation_method": "LDA",
+            #     "num_topics": 50,
+            #     "passes": 100,
+            #     "token_class": "sentence",
+            #     "token_distance_method": "cosine",
+            #     "series_distance_method": "DTW",
+            #     "distance2similarity_method": "MinMaxScaler",
+            # },
+            # {
+            #     "token_representation_method": "LDA",
+            #     "num_topics": 50,
+            #     "passes": 100,
+            #     "token_class": "paragraph",
+            #     "token_distance_method": "cosine",
+            #     "series_distance_method": "DTW",
+            #     "distance2similarity_method": "MinMaxScaler",
+            # },
+            # {
+            #     "token_representation_method": "sentence_bert",
+            #     "token_class": "sentence",
+            #     "token_distance_method": "cosine",
+            #     "series_distance_method": "DTW",
+            #     "distance2similarity_method": "MinMaxScaler",
+            # }
         ]
     }
 

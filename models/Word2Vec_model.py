@@ -1,18 +1,16 @@
-from gensim import corpora, models
 import time
+from gensim.models import Word2Vec
 
-class LDA_model:
+class Word2Vec_model:
     def __init__(self):
-        self.lda_model = None
-        self.dictionary = None
+        self.word2vec_model = None
     def train_LDA_model(self, data, paras, count):
         '''
-        LDA模型训练
+        Word2Vec模型训练
         '''
-        # 构建Dictionary
         text_ls = []
-        
-        # print(data["test.txt"])
+        for key, value in data.items():
+            text_ls.append(value["file_content"])
         
         '''
         {'file_path': 'C:/Users/Winston/Desktop/Repository/TextSimilarity_V2.0/data\\train/docs\\test.txt', 'file_content': ['accept', 'mine', 'opinion', 'oh', 'girl', 'sing', 'wonder'], 'file_sentences': [['accept', 'mine'], ['opinion'], ['oh', 'girl', 'sing'], ['wonder']], 'file_paragraphs': [['accept', 'mine', 'opinion', 'oh', 'girl', 'sing', 'wonder']]}

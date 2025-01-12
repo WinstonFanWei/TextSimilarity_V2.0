@@ -2,6 +2,7 @@
 功能：进行每个层级token的表示，输出向量。
 '''
 import models.LDA_model as lda_m
+import models.Word2Vec_model as w2v_m
 from sentence_transformers import SentenceTransformer
 
 class representor:
@@ -16,6 +17,11 @@ class representor:
             lda_model.train_LDA_model(self.data, self.paras, self.count)
             return lda_model.token_represent(self.data, self.paras, self.count)
         
+        elif self.paras["model_config"][self.count]["token_representation_method"] == 'Word2Vec':
+            word2vec_model = w2v_m.Word2Vec_model()
+            word2vec_model.train_Word2Vec_model()
+            return word2vec_model.token_represent(self.data, self.paras, self.count)
+        
         elif self.paras["model_config"][self.count]["token_representation_method"] == 'sentence_bert':
             sentence_bert_model = SentenceTransformer('paraphrase-MiniLM-L12-v2')
             files_representations = {}
@@ -27,8 +33,16 @@ class representor:
                 
                 files_representations[key] = embeddings
                 
-            print(files_representations["test.txt"])
+            # print(files_representations["test.txt"])
             return files_representations
         
+        elif self.paras["model_config"][self.count]["token_representation_method"] == 'TFIDF':
+            files_representations = {}
+            for key, value in self.data.items():
+                file_token_representation = " ".join(value["file_content"])
+                files_representations[key] = file_token_representation
+
+            return files_representations
+
         else:
             return None

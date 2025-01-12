@@ -13,5 +13,7 @@ class TokenDistance:
         if(self.paras["model_config"][self.count]["token_distance_method"] == "cosine"):
             return 1 - cosine_similarity([token1], [token2])[0][0] # cos越大距离越小
         if(self.paras["model_config"][self.count]["token_distance_method"] == "WMD"):
-            pass
+            return None
             # topic_distance_matrix
+        else:
+            return None
