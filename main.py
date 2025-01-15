@@ -67,19 +67,40 @@ if __name__ == '__main__':
         # 模型
         "model_config": [
             {
-                "token_representation_method": "TFIDF",
-                "token_class": "TFIDF_document",
-                "series_distance_method": "cosine",
-                "distance2similarity_method": "pass",
+                "token_representation_method": "Word2Vec",
+                "token_class": "document",
+                "token_distance_method": "cosine",
+                "series_distance_method": "DTW",
+                "distance2similarity_method": "MinMaxScaler"
             },
             {
-                "token_representation_method": "LDA",
-                "num_topics": 50,
-                "passes": 100,
-                "token_class": "document",
-                "series_distance_method": "cosine",
-                "distance2similarity_method": "pass"
+                "token_representation_method": "Word2Vec",
+                "token_class": "sentence",
+                "token_distance_method": "cosine",
+                "series_distance_method": "DTW",
+                "distance2similarity_method": "MinMaxScaler"
             },
+            {
+                "token_representation_method": "Word2Vec",
+                "token_class": "paragraph",
+                "token_distance_method": "cosine",
+                "series_distance_method": "DTW",
+                "distance2similarity_method": "MinMaxScaler"
+            },
+            # {
+            #     "token_representation_method": "TFIDF",
+            #     "token_class": "TFIDF_document",
+            #     "series_distance_method": "cosine",
+            #     "distance2similarity_method": "pass",
+            # },
+            # {
+            #     "token_representation_method": "LDA",
+            #     "num_topics": 50,
+            #     "passes": 100,
+            #     "token_class": "document",
+            #     "series_distance_method": "cosine",
+            #     "distance2similarity_method": "pass"
+            # },
             # {
             #     "token_representation_method": "LDA",
             #     "num_topics": 20,

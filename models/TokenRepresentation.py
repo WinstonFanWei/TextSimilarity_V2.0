@@ -19,7 +19,7 @@ class representor:
         
         elif self.paras["model_config"][self.count]["token_representation_method"] == 'Word2Vec':
             word2vec_model = w2v_m.Word2Vec_model()
-            word2vec_model.train_Word2Vec_model()
+            word2vec_model.train_Word2Vec_model(self.data, self.paras, self.count)
             return word2vec_model.token_represent(self.data, self.paras, self.count)
         
         elif self.paras["model_config"][self.count]["token_representation_method"] == 'sentence_bert':
