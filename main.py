@@ -42,7 +42,7 @@ def main(data, paras):
 
 
 if __name__ == '__main__':
-    print("----------------------------------------------------------------------------------------")
+    print("============================================================================================================")
     start_time = time.time()
 
     # 打印开始时间
@@ -68,6 +68,8 @@ if __name__ == '__main__':
         "model_config": [
             {
                 "token_representation_method": "Word2Vec",
+                "vector_size": 50,
+                "window": 10,
                 "token_class": "document",
                 "token_distance_method": "cosine",
                 "series_distance_method": "DTW",
@@ -75,6 +77,8 @@ if __name__ == '__main__':
             },
             {
                 "token_representation_method": "Word2Vec",
+                "vector_size": 50,
+                "window": 10,
                 "token_class": "sentence",
                 "token_distance_method": "cosine",
                 "series_distance_method": "DTW",
@@ -82,6 +86,8 @@ if __name__ == '__main__':
             },
             {
                 "token_representation_method": "Word2Vec",
+                "vector_size": 50,
+                "window": 10,
                 "token_class": "paragraph",
                 "token_distance_method": "cosine",
                 "series_distance_method": "DTW",
@@ -95,8 +101,8 @@ if __name__ == '__main__':
             # },
             # {
             #     "token_representation_method": "LDA",
-            #     "num_topics": 50,
-            #     "passes": 100,
+            #     "num_topics": 100,
+            #     "passes": 200,
             #     "token_class": "document",
             #     "series_distance_method": "cosine",
             #     "distance2similarity_method": "pass"
@@ -112,8 +118,8 @@ if __name__ == '__main__':
             # },
             # {
             #     "token_representation_method": "LDA",
-            #     "num_topics": 50,
-            #     "passes": 100,
+            #     "num_topics": 100,
+            #     "passes": 200,
             #     "token_class": "sentence",
             #     "token_distance_method": "cosine",
             #     "series_distance_method": "DTW",
@@ -121,8 +127,8 @@ if __name__ == '__main__':
             # },
             # {
             #     "token_representation_method": "LDA",
-            #     "num_topics": 50,
-            #     "passes": 100,
+            #     "num_topics": 100,
+            #     "passes": 200,
             #     "token_class": "paragraph",
             #     "token_distance_method": "cosine",
             #     "series_distance_method": "DTW",
@@ -161,6 +167,6 @@ if __name__ == '__main__':
                     ])
     logger = logging.getLogger(__name__)
 
-    message = f"\nRUN TIME: {round(execution_time / 60, 2)} minutes\n----------------------------------------------------------------------------------------" 
+    message = f"\nRUN TIME: {round(execution_time / 60, 2)} minutes\n============================================================================================================" 
     
     logger.debug(message)

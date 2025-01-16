@@ -11,32 +11,19 @@ def compute_metrics(df_compare, paras, len):
                     ])
     logger = logging.getLogger(__name__)
 
-    message = "\n---------------------- RMSE ---------------------- \n[0, +inf] RMSE smaller is better." 
-    
     for i in range(len):
-        message += f"\n[method{i}] RMSE: " + str(compute_rmse(df_compare[f"method_{i}"], df_compare["GroundTruth"]))
+        r_model = paras["model_config"][i]["token_representation_method"]
+        token_class = paras["model_config"][i]["token_class"]
+        sd = paras["model_config"][i]["series_distance_method"]
+        d2s = paras["model_config"][i]["distance2similarity_method"]
 
-    message += "\n--------------------------------------------------\n"
+        rmse = str(compute_rmse(df_compare[f"method_{i}"], df_compare["GroundTruth"]))
+        corr = str(compute_correlation(df_compare[f"method_{i}"], df_compare["GroundTruth"]))
+        f1 = str(compute_f1(df_compare[f"method_{i}"], df_compare["GroundTruth"]))
 
-    logger.debug(message)
+        message = f"\n[method{i} ~ R-model:{r_model:<12} token:{token_class:<10} SD:{sd:<8} D2S:{d2s:<15}]" + f"\nRMSE: {rmse}" + f"\nCORR: {corr}" + f"\nF1-score: {f1}"
 
-    message = "\n---------------------- Correlation ---------------------- \n[-1, 1] Correlation bigger is better."
-
-    for i in range(len):
-        message += f"\n[method{i}] CORR: " + str(compute_correlation(df_compare[f"method_{i}"], df_compare["GroundTruth"]))
-
-    message += "\n--------------------------------------------------\n"
-    
-    logger.debug(message)
-
-    message =  "\n---------------------- F1-score ---------------------- \n[0, 1] F1-score bigger is better. "
-
-    for i in range(len):
-        message += f"\n[method{i}] F1-score: " + str(compute_f1(df_compare[f"method_{i}"], df_compare["GroundTruth"]))
-
-    message += "\n--------------------------------------------------\n"
-    
-    logger.debug(message)
+        logger.debug(message)
 
 
 def rmse(predictions, targets):
