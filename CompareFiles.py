@@ -1,9 +1,11 @@
-from tslearn.metrics import dtw_path_from_metric
+from tslearn.metrics import dtw_path_from_metric, soft_dtw
 import pandas as pd
 import numpy as np
+import torch
 import os
 from tqdm import tqdm
 from sklearn.preprocessing import MinMaxScaler
+import math
 
 from concurrent.futures import ProcessPoolExecutor
 
@@ -88,13 +90,19 @@ class CompareFiles:
             cosine_sim = cosine_similarity(tfidf_matrix[0:1], tfidf_matrix[1:2])
             return round(cosine_sim[0][0], 2)
 
-    
     def compare_two_files_use_DTW(self, file1_represent, file2_represent):
-        path, dtw_distance = dtw_path_from_metric(file1_represent, file2_represent, metric=self.td.get_token_distance)
+        if self.paras["model_config"][self.count]["series_distance_method"] == "DTW":
+            path, dtw_distance = dtw_path_from_metric(file1_represent, file2_represent, metric=self.td.get_token_distance)
+        elif self.paras["model_config"][self.count]["series_distance_method"] == "Soft_DTW":
+            file1_represent = np.array(file1_represent)
+            file2_represent = np.array(file2_represent)
+            dtw_distance = soft_dtw(file1_represent, file2_represent, gamma=1)
+        elif self.paras["model_config"][self.count]["series_distance_method"] == "WDTW":
+            pass
         DTW_standard = dtw_distance / len(path)
         # print(path)
         return DTW_standard
-    
+
     def distance2similarity_and_normlayer(self, x):
         if self.paras["model_config"][self.count]["distance2similarity_method"] == "MinMaxScaler":
             x = x.values.reshape(-1, 1)
@@ -104,6 +112,8 @@ class CompareFiles:
             x[x < Q1] = Q1
             x[x > Q3] = Q3
             return MinMaxScaler().fit_transform(x).flatten()
-        if self.paras["model_config"][self.count]["distance2similarity_method"] == "pass":
+        elif self.paras["model_config"][self.count]["distance2similarity_method"] == "Nonlinear":
+            return np.exp(- 20 * x)
+        elif self.paras["model_config"][self.count]["distance2similarity_method"] == "pass":
             return x
         

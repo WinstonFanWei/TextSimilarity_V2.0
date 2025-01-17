@@ -4,6 +4,8 @@
 import models.LDA_model as lda_m
 import models.Word2Vec_model as w2v_m
 from sentence_transformers import SentenceTransformer
+import torch
+from transformers import BertTokenizer, BertModel
 
 class representor:
     def __init__(self, data, paras, count):
@@ -22,14 +24,21 @@ class representor:
             word2vec_model.train_Word2Vec_model(self.data, self.paras, self.count)
             return word2vec_model.token_represent(self.data, self.paras, self.count)
         
-        elif self.paras["model_config"][self.count]["token_representation_method"] == 'sentence_bert':
+        elif self.paras["model_config"][self.count]["token_representation_method"] == 'BERT':
             sentence_bert_model = SentenceTransformer('paraphrase-MiniLM-L12-v2')
             files_representations = {}
             for key, value in self.data.items():
-                if self.paras["model_config"][self.count]["token_class"] == "sentence":
-                    file_token_representation = [" ".join(words_list) for words_list in value["file_sentences"]]
+                if self.paras["model_config"][self.count]["token_class"] == "word":
+                    file_token_representation = value["file_content"]
+                    embeddings = sentence_bert_model.encode(file_token_representation)
 
-                embeddings = sentence_bert_model.encode(file_token_representation)
+                elif self.paras["model_config"][self.count]["token_class"] == "sentence":
+                    file_token_representation = [" ".join(words_list) for words_list in value["file_sentences"]]
+                    embeddings = sentence_bert_model.encode(file_token_representation)
+
+                elif self.paras["model_config"][self.count]["token_class"] == "paragraph":
+                    file_token_representation = [" ".join(words_list) for words_list in value["file_paragraphs"]]
+                    embeddings = sentence_bert_model.encode(file_token_representation)
                 
                 files_representations[key] = embeddings
                 
