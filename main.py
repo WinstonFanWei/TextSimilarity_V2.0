@@ -65,214 +65,214 @@ if __name__ == '__main__':
         "num_cores": 5,
 
         # 模型
-        # 23 种模型组合
+        # 23 种模型组合 
         "model_config": [
             # LDA - 1
-            {
-                "token_representation_method": "LDA",
-                "num_topics": 20,
-                "passes": 50,
-                "token_class": "sentence",
-                "token_distance_method": "cosine",
-                "series_distance_method": "DTW",
-                "distance2similarity_method": "MinMaxScaler",
-            },
-            {
-                "token_representation_method": "LDA",
-                "num_topics": 20,
-                "passes": 50,
-                "token_class": "paragraph",
-                "token_distance_method": "cosine",
-                "series_distance_method": "DTW",
-                "distance2similarity_method": "MinMaxScaler",
-            },
-            {
-                "token_representation_method": "LDA",
-                "num_topics": 20,
-                "passes": 50,
-                "token_class": "document",
-                "series_distance_method": "cosine",
-                "distance2similarity_method": "pass"
-            },
-            # LDA - 2
-            {
-                "token_representation_method": "LDA",
-                "num_topics": 50,
-                "passes": 100,
-                "token_class": "sentence",
-                "token_distance_method": "cosine",
-                "series_distance_method": "DTW",
-                "distance2similarity_method": "MinMaxScaler",
-            },
-            {
-                "token_representation_method": "LDA",
-                "num_topics": 50,
-                "passes": 100,
-                "token_class": "paragraph",
-                "token_distance_method": "cosine",
-                "series_distance_method": "DTW",
-                "distance2similarity_method": "MinMaxScaler",
-            },
-            {
-                "token_representation_method": "LDA",
-                "num_topics": 50,
-                "passes": 100,
-                "token_class": "document",
-                "series_distance_method": "cosine",
-                "distance2similarity_method": "pass"
-            },
-            # LDA - 3
-            {
-                "token_representation_method": "LDA",
-                "num_topics": 100,
-                "passes": 200,
-                "token_class": "sentence",
-                "token_distance_method": "cosine",
-                "series_distance_method": "DTW",
-                "distance2similarity_method": "MinMaxScaler",
-            },
-            {
-                "token_representation_method": "LDA",
-                "num_topics": 100,
-                "passes": 200,
-                "token_class": "paragraph",
-                "token_distance_method": "cosine",
-                "series_distance_method": "DTW",
-                "distance2similarity_method": "MinMaxScaler",
-            },
-            {
-                "token_representation_method": "LDA",
-                "num_topics": 100,
-                "passes": 200,
-                "token_class": "document",
-                "series_distance_method": "cosine",
-                "distance2similarity_method": "pass"
-            },
+            # {
+            #     "token_representation_method": "LDA",
+            #     "num_topics": 20,
+            #     "passes": 50,
+            #     "token_class": "sentence",
+            #     "token_distance_method": "cosine",
+            #     "series_distance_method": "DTW",
+            #     "distance2similarity_method": "MinMaxScaler",
+            # },
+            # {
+            #     "token_representation_method": "LDA",
+            #     "num_topics": 20,
+            #     "passes": 50,
+            #     "token_class": "paragraph",
+            #     "token_distance_method": "cosine",
+            #     "series_distance_method": "DTW",
+            #     "distance2similarity_method": "MinMaxScaler",
+            # },
+            # {
+            #     "token_representation_method": "LDA",
+            #     "num_topics": 20,
+            #     "passes": 50,
+            #     "token_class": "document",
+            #     "series_distance_method": "cosine",
+            #     "distance2similarity_method": "pass"
+            # },
+            # # LDA - 2
+            # {
+            #     "token_representation_method": "LDA",
+            #     "num_topics": 50,
+            #     "passes": 100,
+            #     "token_class": "sentence",
+            #     "token_distance_method": "cosine",
+            #     "series_distance_method": "DTW",
+            #     "distance2similarity_method": "MinMaxScaler",
+            # },
+            # {
+            #     "token_representation_method": "LDA",
+            #     "num_topics": 50,
+            #     "passes": 100,
+            #     "token_class": "paragraph",
+            #     "token_distance_method": "cosine",
+            #     "series_distance_method": "DTW",
+            #     "distance2similarity_method": "MinMaxScaler",
+            # },
+            # {
+            #     "token_representation_method": "LDA",
+            #     "num_topics": 50,
+            #     "passes": 100,
+            #     "token_class": "document",
+            #     "series_distance_method": "cosine",
+            #     "distance2similarity_method": "pass"
+            # },
+            # # LDA - 3
+            # {
+            #     "token_representation_method": "LDA",
+            #     "num_topics": 100,
+            #     "passes": 200,
+            #     "token_class": "sentence",
+            #     "token_distance_method": "cosine",
+            #     "series_distance_method": "DTW",
+            #     "distance2similarity_method": "MinMaxScaler",
+            # },
+            # {
+            #     "token_representation_method": "LDA",
+            #     "num_topics": 100,
+            #     "passes": 200,
+            #     "token_class": "paragraph",
+            #     "token_distance_method": "cosine",
+            #     "series_distance_method": "DTW",
+            #     "distance2similarity_method": "MinMaxScaler",
+            # },
+            # {
+            #     "token_representation_method": "LDA",
+            #     "num_topics": 100,
+            #     "passes": 200,
+            #     "token_class": "document",
+            #     "series_distance_method": "cosine",
+            #     "distance2similarity_method": "pass"
+            # },
             # LDA - 4 - 2 nonlinear
-            {
-                "token_representation_method": "LDA",
-                "num_topics": 50,
-                "passes": 100,
-                "token_class": "sentence",
-                "token_distance_method": "cosine",
-                "series_distance_method": "DTW",
-                "distance2similarity_method": "Nonlinear",
-            },
-            {
-                "token_representation_method": "LDA",
-                "num_topics": 50,
-                "passes": 100,
-                "token_class": "paragraph",
-                "token_distance_method": "cosine",
-                "series_distance_method": "DTW",
-                "distance2similarity_method": "Nonlinear",
-            },
-            # Word2Vec - 1
-            {
-                "token_representation_method": "Word2Vec",
-                "vector_size": 20,
-                "window": 5,
-                "token_class": "sentence",
-                "token_distance_method": "cosine",
-                "series_distance_method": "DTW",
-                "distance2similarity_method": "MinMaxScaler"
-            },
-            {
-                "token_representation_method": "Word2Vec",
-                "vector_size": 20,
-                "window": 5,
-                "token_class": "paragraph",
-                "token_distance_method": "cosine",
-                "series_distance_method": "DTW",
-                "distance2similarity_method": "MinMaxScaler"
-            },
+            # {
+            #     "token_representation_method": "LDA",
+            #     "num_topics": 50,
+            #     "passes": 100,
+            #     "token_class": "sentence",
+            #     "token_distance_method": "cosine",
+            #     "series_distance_method": "DTW",
+            #     "distance2similarity_method": "Nonlinear",
+            # },
+            # {
+            #     "token_representation_method": "LDA",
+            #     "num_topics": 50,
+            #     "passes": 100,
+            #     "token_class": "paragraph",
+            #     "token_distance_method": "cosine",
+            #     "series_distance_method": "DTW",
+            #     "distance2similarity_method": "Nonlinear",
+            # },
+            # # Word2Vec - 1
+            # {
+            #     "token_representation_method": "Word2Vec",
+            #     "vector_size": 20,
+            #     "window": 5,
+            #     "token_class": "sentence",
+            #     "token_distance_method": "cosine",
+            #     "series_distance_method": "DTW",
+            #     "distance2similarity_method": "MinMaxScaler"
+            # },
             {
                 "token_representation_method": "Word2Vec",
                 "vector_size": 20,
                 "window": 5,
-                "token_class": "document",
-                "token_distance_method": "cosine",
-                "series_distance_method": "DTW",
-                "distance2similarity_method": "pass"
-            },
-            # Word2Vec - 2
-            {
-                "token_representation_method": "Word2Vec",
-                "vector_size": 50,
-                "window": 10,
-                "token_class": "sentence",
-                "token_distance_method": "cosine",
-                "series_distance_method": "DTW",
-                "distance2similarity_method": "MinMaxScaler"
-            },
-            {
-                "token_representation_method": "Word2Vec",
-                "vector_size": 50,
-                "window": 10,
                 "token_class": "paragraph",
                 "token_distance_method": "cosine",
                 "series_distance_method": "DTW",
                 "distance2similarity_method": "MinMaxScaler"
             },
-            {
-                "token_representation_method": "Word2Vec",
-                "vector_size": 50,
-                "window": 10,
-                "token_class": "document",
-                "token_distance_method": "cosine",
-                "series_distance_method": "DTW",
-                "distance2similarity_method": "pass"
-            },
-            # Word2Vec - 3
-            {
-                "token_representation_method": "Word2Vec",
-                "vector_size": 50,
-                "window": 10,
-                "token_class": "sentence",
-                "token_distance_method": "cosine",
-                "series_distance_method": "DTW",
-                "distance2similarity_method": "Nonlinear"
-            },
-            {
-                "token_representation_method": "Word2Vec",
-                "vector_size": 50,
-                "window": 10,
-                "token_class": "paragraph",
-                "token_distance_method": "cosine",
-                "series_distance_method": "DTW",
-                "distance2similarity_method": "Nonlinear"
-            },
-            {
-                "token_representation_method": "Word2Vec",
-                "vector_size": 50,
-                "window": 10,
-                "token_class": "document",
-                "token_distance_method": "cosine",
-                "series_distance_method": "DTW",
-                "distance2similarity_method": "pass"
-            },
-            # BERT
-            {
-                "token_representation_method": "BERT",
-                "token_class": "sentence",
-                "token_distance_method": "cosine",
-                "series_distance_method": "DTW",
-                "distance2similarity_method": "MinMaxScaler",
-            },
-            {
-                "token_representation_method": "BERT",
-                "token_class": "paragraph",
-                "token_distance_method": "cosine",
-                "series_distance_method": "DTW",
-                "distance2similarity_method": "MinMaxScaler",
-            },
-            # TFIDF
-            {
-                "token_representation_method": "TFIDF",
-                "token_class": "TFIDF_document",
-                "series_distance_method": "cosine",
-                "distance2similarity_method": "pass",
-            },
+            # {
+            #     "token_representation_method": "Word2Vec",
+            #     "vector_size": 20,
+            #     "window": 5,
+            #     "token_class": "document",
+            #     "token_distance_method": "cosine",
+            #     "series_distance_method": "DTW",
+            #     "distance2similarity_method": "pass"
+            # },
+            # # Word2Vec - 2
+            # {
+            #     "token_representation_method": "Word2Vec",
+            #     "vector_size": 50,
+            #     "window": 10,
+            #     "token_class": "sentence",
+            #     "token_distance_method": "cosine",
+            #     "series_distance_method": "DTW",
+            #     "distance2similarity_method": "MinMaxScaler"
+            # },
+            # {
+            #     "token_representation_method": "Word2Vec",
+            #     "vector_size": 50,
+            #     "window": 10,
+            #     "token_class": "paragraph",
+            #     "token_distance_method": "cosine",
+            #     "series_distance_method": "DTW",
+            #     "distance2similarity_method": "MinMaxScaler"
+            # },
+            # {
+            #     "token_representation_method": "Word2Vec",
+            #     "vector_size": 50,
+            #     "window": 10,
+            #     "token_class": "document",
+            #     "token_distance_method": "cosine",
+            #     "series_distance_method": "DTW",
+            #     "distance2similarity_method": "pass"
+            # },
+            # # Word2Vec - 3
+            # {
+            #     "token_representation_method": "Word2Vec",
+            #     "vector_size": 50,
+            #     "window": 10,
+            #     "token_class": "sentence",
+            #     "token_distance_method": "cosine",
+            #     "series_distance_method": "DTW",
+            #     "distance2similarity_method": "Nonlinear"
+            # },
+            # {
+            #     "token_representation_method": "Word2Vec",
+            #     "vector_size": 50,
+            #     "window": 10,
+            #     "token_class": "paragraph",
+            #     "token_distance_method": "cosine",
+            #     "series_distance_method": "DTW",
+            #     "distance2similarity_method": "Nonlinear"
+            # },
+            # {
+            #     "token_representation_method": "Word2Vec",
+            #     "vector_size": 50,
+            #     "window": 10,
+            #     "token_class": "document",
+            #     "token_distance_method": "cosine",
+            #     "series_distance_method": "DTW",
+            #     "distance2similarity_method": "pass"
+            # },
+            # # BERT
+            # {
+            #     "token_representation_method": "BERT",
+            #     "token_class": "sentence",
+            #     "token_distance_method": "cosine",
+            #     "series_distance_method": "DTW",
+            #     "distance2similarity_method": "MinMaxScaler",
+            # },
+            # {
+            #     "token_representation_method": "BERT",
+            #     "token_class": "paragraph",
+            #     "token_distance_method": "cosine",
+            #     "series_distance_method": "DTW",
+            #     "distance2similarity_method": "MinMaxScaler",
+            # },
+            # # TFIDF
+            # {
+            #     "token_representation_method": "TFIDF",
+            #     "token_class": "TFIDF_document",
+            #     "series_distance_method": "cosine",
+            #     "distance2similarity_method": "pass",
+            # },
         ]
     }
 

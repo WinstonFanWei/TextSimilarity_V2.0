@@ -21,7 +21,7 @@ def compute_metrics(df_compare, paras, len):
         corr = str(compute_correlation(df_compare[f"method_{i}"], df_compare["GroundTruth"]))
         f1 = str(compute_f1(df_compare[f"method_{i}"], df_compare["GroundTruth"]))
 
-        message = f"\n[method{i} ~ R-model:{r_model:<12} token:{token_class:<10} SD:{sd:<8} D2S:{d2s:<15}]" + f"\nRMSE: {rmse}" + f"\nCORR: {corr}" + f"\nF1-score: {f1} \n"
+        message = f"\n[method{i} ~ R-model:{r_model:<12} token:{token_class:<10} SD:{sd:<8} D2S:{d2s:<15}]" + f"\nRMSE: {rmse}" + f"\nCORR: {corr}" + f"\nF1-score: {f1}\n"
 
         logger.debug(message)
 

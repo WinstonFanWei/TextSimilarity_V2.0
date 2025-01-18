@@ -48,7 +48,13 @@ class LDA_model:
         # 构建 LDA 模型
         print("[LDA模型训练中]")
         start_time = time.time()
-        self.lda_model = models.LdaModel(corpus, id2word=self.dictionary, num_topics=paras["model_config"][count]["num_topics"], passes=paras["model_config"][count]["passes"], random_state=random_seed)
+        self.lda_model = models.LdaModel(
+            corpus, 
+            id2word=self.dictionary, 
+            num_topics=paras["model_config"][count]["num_topics"], 
+            passes=paras["model_config"][count]["passes"], 
+            random_state=random_seed
+        )
         end_time = time.time()
         print("[LDA模型训练结束, 用时: " + str(round(end_time - start_time, 2)) + "s]")
 

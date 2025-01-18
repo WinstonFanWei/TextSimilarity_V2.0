@@ -1,5 +1,6 @@
 import time
 from gensim.models import Word2Vec
+from sklearn.decomposition import NMF
 
 class Word2Vec_model:
     def __init__(self):
@@ -16,7 +17,14 @@ class Word2Vec_model:
         print("[Word2Vec模型训练中]")
         random_seed = 42
         start_time = time.time()
-        self.word2vec_model = Word2Vec(text_ls, vector_size=paras["model_config"][count]["vector_size"], window=paras["model_config"][count]["window"], min_count=1, workers=4, seed=random_seed)
+        self.word2vec_model = Word2Vec(
+            text_ls, 
+            vector_size=paras["model_config"][count]["vector_size"], 
+            window=paras["model_config"][count]["window"], 
+            min_count=1, 
+            workers=4, 
+            seed=random_seed
+        )
         end_time = time.time()
         print("[Word2Vec模型训练结束, 用时: " + str(round(end_time - start_time, 2)) + "s]")
 

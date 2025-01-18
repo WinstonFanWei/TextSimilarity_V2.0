@@ -75,13 +75,7 @@ class CompareFiles:
     def compare_two_files(self, file1, file2):
         file1_represent = self.files_representations[file1]
         file2_represent = self.files_representations[file2]
-        if(self.paras["model_config"][self.count]["series_distance_method"] == 'DTW'):
-            return self.compare_two_files_use_DTW(file1_represent, file2_represent)
-        elif(self.paras["model_config"][self.count]["series_distance_method"] == 'DTW_changed'):
-            pass
-        elif(self.paras["model_config"][self.count]["token_class"] == 'document' and self.paras["model_config"][self.count]["series_distance_method"] == 'cosine'):
-            return cosine_similarity([file1_represent], [file2_represent])[0][0]
-        elif(self.paras["model_config"][self.count]["token_representation_method"] == "TFIDF"):
+        if(self.paras["model_config"][self.count]["token_representation_method"] == "TFIDF"):
             # 计算TF-IDF
             vectorizer = TfidfVectorizer()
             tfidf_matrix = vectorizer.fit_transform([file1_represent, file2_represent])
@@ -89,6 +83,13 @@ class CompareFiles:
             # 计算余弦相似度
             cosine_sim = cosine_similarity(tfidf_matrix[0:1], tfidf_matrix[1:2])
             return round(cosine_sim[0][0], 2)
+        
+        elif(self.paras["model_config"][self.count]["series_distance_method"] == 'DTW'):
+            return self.compare_two_files_use_DTW(file1_represent, file2_represent)
+        elif(self.paras["model_config"][self.count]["series_distance_method"] == 'DTW_changed'):
+            pass
+        elif(self.paras["model_config"][self.count]["token_class"] == 'document' and self.paras["model_config"][self.count]["series_distance_method"] == 'cosine'):
+            return cosine_similarity([file1_represent], [file2_represent])[0][0]
 
     def compare_two_files_use_DTW(self, file1_represent, file2_represent):
         if self.paras["model_config"][self.count]["series_distance_method"] == "DTW":
@@ -113,7 +114,14 @@ class CompareFiles:
             x[x > Q3] = Q3
             return MinMaxScaler().fit_transform(x).flatten()
         elif self.paras["model_config"][self.count]["distance2similarity_method"] == "Nonlinear":
-            return np.exp(- 20 * x)
+            x = x.values.reshape(-1, 1)
+            x = 1 - x
+            Q1 = np.percentile(x, 5)
+            Q3 = np.percentile(x, 95)
+            x[x < Q1] = Q1
+            x[x > Q3] = Q3
+            x_scaled = MinMaxScaler().fit_transform(x).flatten()
+            return - 0.5 * np.cos(np.pi * x_scaled) + 0.5
         elif self.paras["model_config"][self.count]["distance2similarity_method"] == "pass":
             return x
         
