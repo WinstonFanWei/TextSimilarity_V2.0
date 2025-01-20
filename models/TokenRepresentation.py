@@ -6,6 +6,7 @@ import models.Word2Vec_model as w2v_m
 from sentence_transformers import SentenceTransformer
 import torch
 from transformers import BertTokenizer, BertModel
+import numpy as np
 
 class representor:
     def __init__(self, data, paras, count):
@@ -39,6 +40,14 @@ class representor:
                 elif self.paras["model_config"][self.count]["token_class"] == "paragraph":
                     file_token_representation = [" ".join(words_list) for words_list in value["file_paragraphs"]]
                     embeddings = sentence_bert_model.encode(file_token_representation)
+
+                elif self.paras["model_config"][self.count]["token_class"] == "document":
+                    file_token_representation = [" ".join(words_list) for words_list in value["file_sentences"]]
+                    embeddings = sentence_bert_model.encode(file_token_representation)
+                    # 转为NumPy数组
+                    embeddings_np = np.array(embeddings)
+                    # 计算每列的平均值
+                    embeddings = np.mean(embeddings_np, axis=0)
                 
                 files_representations[key] = embeddings
                 

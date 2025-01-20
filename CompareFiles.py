@@ -89,7 +89,10 @@ class CompareFiles:
         elif(self.paras["model_config"][self.count]["series_distance_method"] == 'DTW_changed'):
             pass
         elif(self.paras["model_config"][self.count]["token_class"] == 'document' and self.paras["model_config"][self.count]["series_distance_method"] == 'cosine'):
-            return cosine_similarity([file1_represent], [file2_represent])[0][0]
+            if self.paras["model_config"][self.count]["token_representation_method"] == "LDA":
+                return cosine_similarity([file1_represent], [file2_represent])[0][0]
+            elif self.paras["model_config"][self.count]["token_representation_method"] == "Word2Vec" or self.paras["model_config"][self.count]["token_representation_method"] == "BERT":
+                return (cosine_similarity([file1_represent], [file2_represent])[0][0] + 1) / 2
 
     def compare_two_files_use_DTW(self, file1_represent, file2_represent):
         if self.paras["model_config"][self.count]["series_distance_method"] == "DTW":
