@@ -5,7 +5,7 @@ from sklearn.decomposition import NMF
 class Word2Vec_model:
     def __init__(self):
         self.word2vec_model = None
-    def train_Word2Vec_model(self, data, paras, count):
+    def  train_Word2Vec_model(self, data, paras, count):
         '''
         Word2Vec模型训练
         '''
